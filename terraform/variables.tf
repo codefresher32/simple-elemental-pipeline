@@ -13,10 +13,6 @@ variable "environment" {
   default = ""
 }
 
-variable "aws_route53_zone" {
-  type = string
-}
-
 variable "mediaconvert_endpoint_url" {
   type    = string
   default = ""

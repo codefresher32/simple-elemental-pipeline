@@ -132,3 +132,11 @@ resource "aws_iam_role_policy_attachment" "encoder_iam_pass_policy_attachment" {
   role       = aws_iam_role.iam_lambda_encoder.name
   policy_arn = aws_iam_policy.encoder_iam_pass_policy.arn
 }
+
+resource "aws_lambda_permission" "vod_source_bucket_invoke_encoder_lambda" {
+  statement_id  = "AllowExecutionFromS3Bucket"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_encoder.arn
+  principal     = "s3.amazonaws.com"
+  source_arn    = aws_s3_bucket.vod_source_bucket.arn
+}
