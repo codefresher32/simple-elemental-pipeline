@@ -1,23 +1,31 @@
-output "mediaconnect_ingress_ip" {
-  value = module.mediaconnect.ingress_ip
+output "vod_source_bucket_name" {
+  value = aws_s3_bucket.vod_source_bucket.id
 }
 
-output "mediaconnect_ingest_port" {
-  value = module.mediaconnect.ingest_port
+output "vod_source_bucket_arn" {
+  value = aws_s3_bucket.vod_source_bucket.arn
 }
 
-output "mediapackage_hls_endpoint" {
-  value = module.mediapackage.hls_origin_endpoint
+output "retriever_lambda_arn" {
+  value = aws_lambda_function.lambda_retriever.arn
 }
 
-output "mediaconnect_flow_arn" {
-  value = module.mediaconnect.flow_arn
+output "retriever_lambda_url" {
+  value = aws_lambda_function_url.lambda_retriever_function_url.function_url
 }
 
-output "medialive_channel_id" {
-  value = module.medialive.channel_id
+output "encoder_lambda_arn" {
+  value = aws_lambda_function.lambda_encoder.arn
 }
 
-output "mediapackage_channel_id" {
-  value = module.mediapackage.channel_id
+output "playout_lambda_arn" {
+  value = aws_lambda_function.lambda_playout.arn
+}
+
+output "mediaconvert_cf_domain" {
+  value = module.cloudfront_s3.cf_domain
+}
+
+output "origin_access_identity_iam_arn" {
+  value = module.cloudfront_s3.origin_access_identity_iam_arn
 }

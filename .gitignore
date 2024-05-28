@@ -4,7 +4,10 @@
 
 # Terraform
 .terraform*
-terraform.tfstate*
+terraform.*
 
 # Tools
 .tool-versions
+
+# Lambdas Zip
+zipped-lambdas

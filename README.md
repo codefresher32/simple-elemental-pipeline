@@ -17,7 +17,7 @@ Deploy a simple aws video pipeline
 You can set the environment variables manually or
 
 ```sh
-eval "$(aws configure export-credentials --profile your-profile-name --format env)"
+eval "$(aws configure export-credentials --profile eu-north-1-nonprod --format env)"
 ```
 
 Export a region

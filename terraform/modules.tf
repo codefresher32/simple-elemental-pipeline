@@ -1,19 +1,32 @@
-module "mediaconnect" {
-  source = "./mediaconnect"
+module "mediaconvert" {
+  source = "./mediaconvert"
+
   prefix                 = var.prefix
-  mediaconnect_protocol  = var.mediaconnect_settings.mediaconnect_protocol
-  whitelist_cidr_address = var.mediaconnect_settings.whitelist_cidr_address
-  ingest_port            = var.mediaconnect_settings.ingest_port
+  region                 = var.region
+  environment            = var.environment
+  vod_source_bucket_name = local.vod_source_bucket_name
+
+  providers = {
+    aws     = aws
+    aws.iam = aws.iam
+  }
 }
 
-module "medialive" {
-  source                  = "./medialive"
-  prefix                  = var.prefix
-  mediaconnect_flow_arn   = module.mediaconnect.flow_arn
-  mediapackage_channel_id = module.mediapackage.channel_id
-}
+module "cloudfront_s3" {
+  source = "./cloudfront"
 
-module "mediapackage" {
-  source = "./mediapackage"
-  prefix = var.prefix
+  prefix                    = var.prefix
+  region                    = var.region
+  environment               = var.environment
+  cf_name                   = local.cf_mediaconvert
+  aws_route53_zone          = var.aws_route53_zone
+  hostname                  = local.mediaconvert_s3_hostname
+  origin_hostnames          = [aws_s3_bucket.vod_source_bucket.bucket_regional_domain_name]
+  response_header_policy_id = resource.aws_cloudfront_response_headers_policy.cors_with_preflight_response_header_policy.id
+  managed_cache_policy_id   = data.aws_cloudfront_cache_policy.managed_caching_optimized_cache_policy.id
+
+  providers = {
+    aws            = aws
+    aws.cloudfront = aws.cloudfront
+  }
 }
