@@ -11,3 +11,5 @@ terraform.*
 
 # Lambdas Zip
 zipped-lambdas
+
+node_modules

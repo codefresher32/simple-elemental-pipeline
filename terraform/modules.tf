@@ -1,10 +1,7 @@
-module "mediaconvert" {
-  source = "./mediaconvert"
-
-  prefix                 = var.prefix
-  region                 = var.region
-  environment            = var.environment
-  vod_source_bucket_name = local.vod_source_bucket_name
+module "mediapackage" {
+  source         = "./mediapackage"
+  prefix         = var.prefix
+  vod_bucket_arn = aws_s3_bucket.vod_source_bucket.arn
 
   providers = {
     aws     = aws

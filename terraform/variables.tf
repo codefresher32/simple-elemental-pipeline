@@ -13,14 +13,9 @@ variable "environment" {
   default = ""
 }
 
-variable "mediaconvert_endpoint_url" {
+variable "vod_harvested_folder" {
   type    = string
-  default = ""
-}
-
-variable "vod_folder" {
-  type    = string
-  default = "retrieved/"
+  default = "harvested"
 }
 
 variable "lambda_log_cw_retention_days" {
