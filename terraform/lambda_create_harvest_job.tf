@@ -8,7 +8,7 @@ module "create_harvest_job_log_group" {
 
 data "archive_file" "lambda_create_harvest_job_data" {
   type        = "zip"
-  source_dir  = "${path.root}/lambdas/create_harvest_job"
+  source_dir  = "${path.root}/dist/lambda_create_harvest_job"
   output_path = "${path.root}/zipped-lambdas/lambda_create_harvest_job.zip"
 }
 
@@ -25,7 +25,7 @@ resource "aws_lambda_function" "lambda_create_harvest_job" {
   environment {
     variables = {
       MP_HARVEST_ROLE_ARN  = aws_iam_role.iam_mediapackage_harvest_role.arn
-      VOD_SOURCE_BUCKET    = local.vod_source_bucket_name
+      VOD_SOURCE_BUCKET    = "eu-north-1-dev-video-vimond-mc-output"
       VOD_HARVESTED_FOLDER = var.vod_harvested_folder
     }
   }

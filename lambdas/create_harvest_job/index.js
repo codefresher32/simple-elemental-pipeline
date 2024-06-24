@@ -1,6 +1,6 @@
-import { MediaPackageClient, CreateHarvestJobCommand } from "@aws-sdk/client-mediapackage";
+const { MediaPackageClient, CreateHarvestJobCommand } = require("@aws-sdk/client-mediapackage");
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   console.info(`EVENT: ${JSON.stringify(event)}`);
 
   const {

@@ -8,7 +8,7 @@ module "harvest_event_handler_log_group" {
 
 data "archive_file" "lambda_harvest_event_handler_data" {
   type        = "zip"
-  source_dir  = "${path.root}/lambdas/mp_harvest_event_handler"
+  source_dir  = "${path.root}/dist/lambda_harvest_event_handler"
   output_path = "${path.root}/zipped-lambdas/lambda_harvest_event_handler.zip"
 }
 

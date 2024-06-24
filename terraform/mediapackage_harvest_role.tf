@@ -25,8 +25,9 @@ data "aws_iam_policy_document" "harvest_job_s3_permissions" {
     actions = ["s3:*"]
 
     resources = [
-      "${aws_s3_bucket.vod_source_bucket.arn}",
-      "${aws_s3_bucket.vod_source_bucket.arn}/*"
+      "*"
+      # "${aws_s3_bucket.vod_source_bucket.arn}",
+      # "${aws_s3_bucket.vod_source_bucket.arn}/*"
     ]
   }
 }

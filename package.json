@@ -2,14 +2,20 @@
   "name": "simple-elemental-pipeline",
   "version": "1.0.0",
   "description": "Deploy a simple aws video pipeline",
-  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf zipped-lambdas && rm -rf dist",
+    "build": "node build.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eyevinn/hls-pull-push": "^0.5.2"
+    "@eyevinn/hls-pull-push": "^0.5.2",
+    "axios": "^1.7.2",
+    "fluent-ffmpeg": "^2.1.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.5"
   }
 }
